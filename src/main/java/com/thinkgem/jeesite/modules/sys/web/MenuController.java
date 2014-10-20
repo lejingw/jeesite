@@ -74,10 +74,6 @@ public class MenuController extends BaseController {
 	@RequiresPermissions("sys:menu:edit")
 	@RequestMapping(value = "save")
 	public String save(Menu menu, Model model, RedirectAttributes redirectAttributes) {
-		if(Global.isDemoMode()){
-			addMessage(redirectAttributes, "演示模式，不允许操作！");
-			return "redirect:"+Global.getAdminPath()+"/sys/menu/";
-		}
 		if (!beanValidator(model, menu)){
 			return form(menu, model);
 		}
@@ -89,10 +85,6 @@ public class MenuController extends BaseController {
 	@RequiresPermissions("sys:menu:edit")
 	@RequestMapping(value = "delete")
 	public String delete(String id, RedirectAttributes redirectAttributes) {
-		if(Global.isDemoMode()){
-			addMessage(redirectAttributes, "演示模式，不允许操作！");
-			return "redirect:"+Global.getAdminPath()+"/sys/menu/";
-		}
 		if (Menu.isRoot(id)){
 			addMessage(redirectAttributes, "删除菜单失败, 不允许删除顶级菜单或编号为空");
 		}else{
@@ -114,10 +106,6 @@ public class MenuController extends BaseController {
 	@RequiresPermissions("sys:menu:edit")
 	@RequestMapping(value = "synToActiviti")
 	public String synToActiviti(RedirectAttributes redirectAttributes) {
-		if(Global.isDemoMode()){
-			addMessage(redirectAttributes, "演示模式，不允许操作！");
-			return "redirect:"+Global.getAdminPath()+"/sys/menu/";
-		}
 		systemService.synToActiviti();
     	addMessage(redirectAttributes, "同步工作流权限数据成功!");
 		return "redirect:"+Global.getAdminPath()+"/sys/menu/";
@@ -130,10 +118,6 @@ public class MenuController extends BaseController {
 	@RequiresPermissions("sys:menu:edit")
 	@RequestMapping(value = "updateSort")
 	public String updateSort(String[] ids, Integer[] sorts, RedirectAttributes redirectAttributes) {
-		if(Global.isDemoMode()){
-			addMessage(redirectAttributes, "演示模式，不允许操作！");
-			return "redirect:"+Global.getAdminPath()+"/sys/menu/";
-		}
     	int len = ids.length;
     	Menu[] menus = new Menu[len];
     	for (int i = 0; i < len; i++) {

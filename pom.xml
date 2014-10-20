@@ -160,7 +160,7 @@
 		  <!-- use snapshot version -->
 		  <snapshots>
 		     <enabled>true</enabled>
-		      <updatePolicy>always</updatePolicy>
+		     <updatePolicy>never</updatePolicy>
 		   </snapshots>
 		</repository>
 		
@@ -788,6 +788,8 @@
 			            	<value>${project.build.sourceEncoding}</value>
 			        	</systemProperty>
 			        </systemProperties>
+					<stopPort>8090</stopPort>
+					<stopKey>foo</stopKey>
 				</configuration>
 			</plugin>
 			

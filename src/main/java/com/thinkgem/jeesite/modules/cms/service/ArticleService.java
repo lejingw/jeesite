@@ -59,8 +59,7 @@ public class ArticleService extends BaseService {
 	public Page<Article> find(Page<Article> page, Article article, boolean isDataScopeFilter) {
 		// 更新过期的权重，间隔为“6”个小时
 		Date updateExpiredWeightDate =  (Date)CacheUtils.get("updateExpiredWeightDateByArticle");
-		if (updateExpiredWeightDate == null || (updateExpiredWeightDate != null 
-				&& updateExpiredWeightDate.getTime() < new Date().getTime())){
+		if (updateExpiredWeightDate == null || (updateExpiredWeightDate != null && updateExpiredWeightDate.getTime() < new Date().getTime())){
 			articleDao.updateExpiredWeight();
 			CacheUtils.put("updateExpiredWeightDateByArticle", DateUtils.addHours(new Date(), 6));
 		}

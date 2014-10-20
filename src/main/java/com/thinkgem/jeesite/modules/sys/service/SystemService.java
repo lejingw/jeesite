@@ -349,7 +349,7 @@ public class SystemService extends BaseService  {
 				org.activiti.engine.identity.User activitiUser = identityService.createUserQuery().userId(userId).singleResult();
 				// 是新增用户
 				if (activitiUser == null) {
-					activitiUser = identityService.newUser(userId);
+      					activitiUser = identityService.newUser(userId);
 					identityService.saveUser(activitiUser);
 				} 
 				// 同步用户角色关联数据
