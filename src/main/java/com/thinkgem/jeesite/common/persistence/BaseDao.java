@@ -166,9 +166,9 @@ public class BaseDao<T> {
 	 * @return
 	 */
 	public <E> List<E> find(String qlString){
-		return find(qlString, null);
+		return find(qlString, (Parameter) null);
 	}
-    
+
     /**
 	 * QL 查询
 	 * @param qlString
@@ -180,6 +180,18 @@ public class BaseDao<T> {
 		Query query = createQuery(qlString, parameter);
 		return query.list();
 	}
+
+    /**
+     * QL 查询
+     * @param qlString
+     * @param parameter
+     * @return
+     */
+    @SuppressWarnings("unchecked")
+    public <E> List<E> find(String qlString, String... parameter){
+        Query query = createQuery(qlString, new Parameter(parameter));
+        return query.list();
+    }
 	
 	/**
 	 * QL 查询所有

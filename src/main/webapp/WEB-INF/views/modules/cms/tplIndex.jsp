@@ -18,7 +18,7 @@
 		</div>
 	</div>
 	<script type="text/javascript"> 
-		var leftWidth = "160"; // 左侧窗口大小
+		var leftWidth = "200"; // 左侧窗口大小
 		function wSize(){
 			var strs=getWindowSize().toString().split(",");
 			$("#cmsMenuFrame, #cmsMainFrame, #openClose").height(strs[0]-5);

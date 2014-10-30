@@ -7,7 +7,6 @@ package com.thinkgem.jeesite.modules.sys.service;
 
 import java.util.List;
 
-import com.thinkgem.jeesite.modules.sys.dao.MyBatisDictDao;
 import org.apache.commons.lang3.StringUtils;
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Order;
@@ -35,8 +34,8 @@ public class DictService extends BaseService {
 	@Autowired
 	private DictDao dictDao;
 	
-	@Autowired
-	private MyBatisDictDao myBatisDictDao;
+//	@Autowired
+//	private MyBatisDictDao myBatisDictDao;
 	
 	public Dict get(String id) {
 		// MyBatis 查询
@@ -46,21 +45,21 @@ public class DictService extends BaseService {
 	}
 	
 	public Page<Dict> find(Page<Dict> page, Dict dict) {
-		// MyBatis 查询
-		dict.setPage(page);
-		page.setList(myBatisDictDao.find(dict));
-		return page;
-//		// Hibernate 查询
-//		DetachedCriteria dc = dictDao.createDetachedCriteria();
-//		if (StringUtils.isNotEmpty(dict.getType())){
-//			dc.add(Restrictions.eq("type", dict.getType()));
-//		}
-//		if (StringUtils.isNotEmpty(dict.getDescription())){
-//			dc.add(Restrictions.like("description", "%"+dict.getDescription()+"%"));
-//		}
-//		dc.add(Restrictions.eq(Dict.FIELD_DEL_FLAG, Dict.DEL_FLAG_NORMAL));
-//		dc.addOrder(Order.asc("type")).addOrder(Order.asc("sort")).addOrder(Order.desc("id"));
-//		return dictDao.find(page, dc);
+//		// MyBatis 查询
+//		dict.setPage(page);
+//		page.setList(myBatisDictDao.find(dict));
+//		return page;
+		// Hibernate 查询
+		DetachedCriteria dc = dictDao.createDetachedCriteria();
+		if (StringUtils.isNotEmpty(dict.getType())){
+			dc.add(Restrictions.eq("type", dict.getType()));
+		}
+		if (StringUtils.isNotEmpty(dict.getDescription())){
+			dc.add(Restrictions.like("description", "%"+dict.getDescription()+"%"));
+		}
+		dc.add(Restrictions.eq(Dict.FIELD_DEL_FLAG, Dict.DEL_FLAG_NORMAL));
+		dc.addOrder(Order.asc("type")).addOrder(Order.asc("sort")).addOrder(Order.desc("id"));
+		return dictDao.find(page, dc);
 	}
 	
 	public List<String> findTypeList(){

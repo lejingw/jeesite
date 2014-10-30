@@ -3,9 +3,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>${article.title} - ${category.name}</title>
+	<title>${fns:replaceHtml(article.title)} - ${category.name}</title>
 	<meta name="decorator" content="cms_default_${site.theme}"/>
-	<meta name="description" content="${article.description} ${category.description}" />
+    <meta name="description" content="${fns:replaceHtml(article.description)} ${fns:replaceHtml(category.description)}" />
 	<meta name="keywords" content="${article.keywords} ${category.keywords}" />
 	<script type="text/javascript">
 		$(document).ready(function() {
