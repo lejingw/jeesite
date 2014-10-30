@@ -1,6 +1,3 @@
-/**
- * There are <a href="https://github.com/thinkgem/jeesite">JeeSite</a> code generation
- */
 package ${packageName}.${moduleName}.service${subModuleName};
 
 import org.hibernate.criterion.DetachedCriteria;

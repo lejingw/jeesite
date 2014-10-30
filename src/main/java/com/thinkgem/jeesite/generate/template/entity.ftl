@@ -1,6 +1,3 @@
-/**
- * There are <a href="https://github.com/thinkgem/jeesite">JeeSite</a> code generation
- */
 package ${packageName}.${moduleName}.entity${subModuleName};
 
 import javax.persistence.Entity;
