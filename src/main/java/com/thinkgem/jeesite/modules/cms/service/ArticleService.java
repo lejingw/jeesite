@@ -199,6 +199,7 @@ public class ArticleService extends BaseService {
 		Sort sort = null;//new Sort(new SortField("updateDate", SortField.DOC, true));
 		// 全文检索
 		articleDao.search(page, query, queryFilter, sort);
+        articleDao.clear();
 		// 关键字高亮
 		articleDao.keywordsHighlight(query, page.getList(), 30, "title");
 		articleDao.keywordsHighlight(query, page.getList(), 130, "description","articleData.content");
