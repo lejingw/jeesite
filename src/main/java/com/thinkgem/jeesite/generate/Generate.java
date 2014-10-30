@@ -62,7 +62,7 @@ public class Generate {
 			return;
 		}
 		
-		if (StringUtils.isBlank(moduleName) || StringUtils.isBlank(moduleName) 
+		if (StringUtils.isBlank(packageName) || StringUtils.isBlank(moduleName)
 				|| StringUtils.isBlank(className) || StringUtils.isBlank(functionName)){
 			logger.error("参数设置错误：包名、模块名、类名、功能名不能为空。");
 			return;

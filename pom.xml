@@ -5,7 +5,7 @@
 	
 	<groupId>com.thinkgem.jeesite</groupId>
 	<artifactId>jeesite</artifactId>
-	<version>1.1.0</version>
+	<version>1.0</version>
 	<packaging>war</packaging>
 	<name>JeeSite</name>
 	<url>http://thinkgem.github.com/jeesite</url>
@@ -42,8 +42,10 @@
 		
 		<!-- jdbc driver setting -->
 		<mysql.driver.version>5.1.13</mysql.driver.version>
+		<!--
 		<oracle.driver.version>10.2.0.1.0</oracle.driver.version>
 		<mssql.driver.version>1.2.4</mssql.driver.version>
+		-->
 	    
 		<!-- other setting -->
 		<jdk.version>1.6</jdk.version>
@@ -369,6 +371,7 @@
 			<version>${mysql.driver.version}</version>
 			<scope>runtime</scope>
 		</dependency>
+		<!--
 		<dependency>
 			<groupId>com.oracle</groupId>
 			<artifactId>ojdbc14</artifactId>
@@ -381,6 +384,7 @@
 			<version>${mssql.driver.version}</version>
 			<scope>runtime</scope>
 		</dependency>
+		-->
 		<!-- PERSISTENCE end -->
 
 		<!-- WEB begin -->
@@ -886,8 +890,7 @@
 	                            <dbunit driver="${jdbc.driver}" url="${jdbc.url}" userid="${jdbc.username}" password="${jdbc.password}">
 	                            
 								<!-- oracle
-	                            <dbunit driver="${jdbc.driver}" url="${jdbc.url}" userid="${jdbc.username}" password="${jdbc.password}"
-	                                schema="${jdbc.username}" > -->
+	                            <dbunit driver="${jdbc.driver}" url="${jdbc.url}" userid="${jdbc.username}" password="${jdbc.password}" schema="${jdbc.username}" > -->
 									
 									<dbconfig>
 										<property name="datatypeFactory" value="${dbunit.datatype}" />
@@ -929,16 +932,5 @@
 		</profile>
 		
 	</profiles>
-	
-	<!-- 开发者信息 -->
-	<developers>  
-		<developer>
-			<id>thinkgem</id>
-			<name>WangZhen</name>
-			<email>thinkgem at 163.com</email>
-			<roles><role>Project lead</role></roles>
-			<timezone>+8</timezone>  
-		</developer>
-	</developers>
-	
+
 </project>

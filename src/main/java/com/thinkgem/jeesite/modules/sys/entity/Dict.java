@@ -24,7 +24,8 @@ import com.thinkgem.jeesite.common.persistence.IdEntity;
  */
 @Entity
 @Table(name = "sys_dict")
-@DynamicInsert @DynamicUpdate
+@DynamicInsert
+@DynamicUpdate
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class Dict extends IdEntity<Dict> {
 

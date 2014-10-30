@@ -80,8 +80,10 @@ public class Page<T> {
 				this.setPageNo(Integer.parseInt(no));
 			}
 		}
+		System.out.println("=========1="+this.pageNo);
 		// 设置页面大小参数（传递repage参数，来记住页码大小）
 		String size = request.getParameter("pageSize");
+		System.out.println("=========2="+this.pageNo);
 		if (StringUtils.isNumeric(size)){
 			CookieUtils.setCookie(response, "pageSize", size);
 			this.setPageSize(Integer.parseInt(size));
