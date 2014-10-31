@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.thinkgem.jeesite.modules.operate.dao.MyBatisSaleDao">
+
+	<select id="find" resultType="Sale">
+        SELECT DATE_FORMAT(aa.orderTime, ${dayPattern}) as 'orderTime', aa.lotteryType as 'lotteryType', sum(aa.orderbonus) as 'orderbonus', sum(aa.bonus) as 'bonus'
+        FROM ( SELECT DATE_FORMAT(payTime, '%Y-%m-%d') AS orderTime, lotteryType, SUM(btbonus) AS orderbonus, SUM(bonus) AS bonus FROM buytogether
+                <![CDATA[WHERE btstatus > 0 and btstatus <> 4]]>
+                <if test="null != saleChannelType and '' != saleChannelType">
+                    and sale_channel_type = #{saleChannelType}
+                </if>
+                GROUP BY DATE_FORMAT(payTime, '%Y-%m-%d'), lotteryType
+            UNION ALL SELECT DATE_FORMAT(payTime, '%Y-%m-%d') AS orderTime, lotteryType, SUM(orderbonus) AS orderbonus, SUM(bonus) AS bonus FROM generalorder
+                <![CDATA[WHERE orderStatus > 0 and orderStatus <> 4]]>
+                <if test="null != saleChannelType and '' != saleChannelType">
+                    and sale_channel_type = #{saleChannelType}
+                </if>
+                GROUP BY DATE_FORMAT(payTime, '%Y-%m-%d'), lotteryType
+        ) aa
+        <where>
+            <if test="null != beginDate and ''!= beginDate">
+                <![CDATA[AND aa.orderTime >= #{beginDate}]]>
+            </if>
+            <if test="null != endDate and ''!= endDate">
+                <![CDATA[AND aa.orderTime <= #{endDate}]]>
+            </if>
+            <if test="null != lotteryType and ''!= lotteryType">
+                AND aa.lotteryType = #{lotteryType}
+            </if>
+        </where>
+        GROUP BY DATE_FORMAT(aa.orderTime, ${dayPattern}), aa.lotteryType ORDER BY aa.orderTime DESC, aa.lotteryType
+	</select>
+</mapper>

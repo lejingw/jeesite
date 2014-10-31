@@ -110,7 +110,7 @@ public class OfficeController extends BaseController {
 	@RequiresUser
 	@ResponseBody
 	@RequestMapping(value = "treeData")
-	public List<Map<String, Object>> treeData(@RequestParam(required=false) Long extId, @RequestParam(required=false) Long type,
+	public List<Map<String, Object>> treeData(@RequestParam(required=false) String extId, @RequestParam(required=false) Long type,
 			@RequestParam(required=false) Long grade, HttpServletResponse response) {
 		response.setContentType("application/json; charset=UTF-8");
 		List<Map<String, Object>> mapList = Lists.newArrayList();
